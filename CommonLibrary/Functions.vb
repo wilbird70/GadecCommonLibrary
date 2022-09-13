@@ -2,7 +2,7 @@
 'Common Library
 
 ''' <summary>
-''' Provides general methods.
+''' Provides some general methods.
 ''' </summary>
 Public Module Functions
 
