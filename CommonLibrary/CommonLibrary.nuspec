@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="utf-8"?>
+<package >
+  <metadata>
+    <id>$id$</id>
+    <version>$version$</version>
+    <title>$title$</title>
+    <authors>$author$</authors>
+    <requireLicenseAcceptance>false</requireLicenseAcceptance>
+    <license type="expression">MIT</license>
+    <dependencies>
+      <group targetFramework=".NETFramework4.8" />
+    </dependencies>
+
+    <icon>GadecLogo.png</icon>
+    <!-- <projectUrl>http://project_url_here_or_delete_this_line/</projectUrl> -->
+
+    <description>$description$</description>
+    <releaseNotes>Still under construction: Update leads to missing parts, caused by renamed functions en namespaces.</releaseNotes>
+    <copyright>$copyright$</copyright>
+    <tags>Gadec Common</tags>
+  </metadata>
+  <files>
+    <file src="GadecLogo.png" />
+  </files>
+</package>
