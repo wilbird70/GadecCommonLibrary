@@ -42,12 +42,13 @@ Public Module Functions
     ''' <param name="appName">The name and version of the present app..</param>
     ''' <param name="appBuild">The lastwritetime of the present app.</param>
     ''' <param name="stackBack">Sometimes an app has an extra methode for exceptions to add data. Enter the number of cascades.</param>
-    Public Sub MessageBoxException(exception As Exception, appName As String, appBuild As String, Optional stackBack As Integer = 0)
+    Public Function MessageBoxException(exception As Exception, appName As String, appBuild As String, Optional stackBack As Integer = 0)
         Dim methodeName = (New StackTrace).GetFrame(1 + stackBack).GetMethod.Name
         Dim dialog = New ExceptionDialog(exception, appName, appBuild, methodeName, "gadec.engineerings.software@outlook.com")
         dialog.Show()
         Beep()
-    End Sub
+        Return Nothing
+    End Function
 
     ''' <summary>
     ''' Shows a dialog with the available app-history, stored in the SetHistory.xml-file found in the apps supportfolder.

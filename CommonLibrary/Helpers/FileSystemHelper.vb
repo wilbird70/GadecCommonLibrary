@@ -227,7 +227,7 @@ Public Class FileSystemHelper
     ''' <param name="decimals">Number of decimals to use (eg 1, than 10.2 MB).</param>
     ''' <param name="totalWidth">The total number of characters in the resulting string.</param>
     ''' <returns>The right aligned readable filesize.</returns>
-    Public Shared Function ReadableFileSystemSizeRightAligned(length As Long, Optional decimals As Integer = 0, Optional totalWidth As Integer = 7)
+    Public Shared Function ReadableFileSystemSizeRightAligned(length As Long, Optional decimals As Integer = 0, Optional totalWidth As Integer = 7) As String
         Return ReadableFileSystemSize(length, decimals).PadLeft(totalWidth)
     End Function
 

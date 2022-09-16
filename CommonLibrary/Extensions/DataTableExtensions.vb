@@ -37,7 +37,7 @@ Public Module DataTableExtensions
     ''' <param name="eDataTable"></param>
     ''' <param name="primaryKeyString">String with fieldnames, delimited with semicolons.</param>
     <Extension()>
-    Public Sub AssignPrimaryKey(ByRef eDataTable As DataTable, primaryKeyString As String)
+    Public Sub AssignPrimaryKey(ByVal eDataTable As DataTable, primaryKeyString As String)
         If IsNothing(eDataTable) Then Exit Sub
 
         Dim primaryColumns = New List(Of DataColumn)
