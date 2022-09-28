@@ -91,6 +91,17 @@ Public Class Translator
         RaiseEvent LanguageChangedEvent(Nothing, eventArgs)
     End Sub
 
+    ''' <summary>
+    ''' Translates the controls associated with the specified parent.
+    ''' </summary>
+    ''' <param name="parent">The parent control.</param>
+    Public Shared Sub TranslateControles(ByVal parent As Control)
+        For Each control In parent.Controls.ToArray
+            If control.Name.StartsWith("lt") Then control.Text = control.Name.Translate
+            If control.HasChildren Then TranslateControles(control)
+        Next
+    End Sub
+
     'shared functions
 
     ''' <summary>

@@ -44,7 +44,7 @@ Public Module GenericExtensions
     'functions
 
     ''' <summary>
-    ''' Converts the ienumerable string collection to a sorted list.
+    ''' Converts the ienumerable collection to a sorted list.
     ''' </summary>
     ''' <param name="eIEnumerable"></param>
     ''' <returns>The sorted list.</returns>
