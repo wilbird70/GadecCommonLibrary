@@ -66,17 +66,17 @@ Public Class Registerizer
     ''' <summary>
     ''' Initializes the Registerizer.
     ''' </summary>
-    ''' <param name="company">The name of the company of the app.</param>
+    ''' <param name="company">The name of the company who onws the app.</param>
     ''' <param name="mainKey">Section for mainsettings, usually the name of the app.</param>
-    ''' <param name="subKey">Section for usersettings, usually 'app-name\Settings'.</param>
-    ''' <param name="sub2Key">A secundairy section for usersettings when needed.</param>
-    Public Shared Sub Initialize(company As String, mainKey As String, Optional subKey As String = "", Optional sub2Key As String = "")
+    ''' <param name="subKey">Section for detailted settings, usually 'app-name\Settings'.</param>
+    ''' <param name="altKey">An alternative section for usersettings when needed.</param>
+    Public Shared Sub Initialize(company As String, mainKey As String, Optional subKey As String = "", Optional altKey As String = "")
         If company = "" Or mainKey = "" Then Exit Sub
 
         subKey = If(subKey = "", mainKey, subKey)
-        sub2Key = If(sub2Key = "", subKey, sub2Key)
-        Dim settings = New Dictionary(Of String, String) From {{"Company", company}, {"MainKey", mainKey}, {"UserKey", subKey}, {"User2Key", sub2Key}}
-        _registerizer = New Registerizer(settings)
+        altKey = If(altKey = "", subKey, altKey)
+        Dim settings = "Company={0};MainKey={1};SubKey={2};AltKey={3}".Compose(company, mainKey, subKey, altKey).Cut
+        _registerizer = New Registerizer(settings.ToIniDictionary)
     End Sub
 
     'shared functions
@@ -112,7 +112,7 @@ Public Class Registerizer
     Public Shared Function UserSetting(name As String, Optional newValue As String = "$$$") As String
         If IsNothing(_registerizer) Then Throw New Exception("Registerizer not initialized")
 
-        Return _registerizer.Setting("UserKey", name, newValue)
+        Return _registerizer.Setting("SubKey", name, newValue)
     End Function
 
     ''' <summary>
@@ -124,7 +124,7 @@ Public Class Registerizer
     Public Shared Function User2Setting(name As String, Optional newValue As String = "$$$") As String
         If IsNothing(_registerizer) Then Throw New Exception("Registerizer not initialized")
 
-        Return _registerizer.Setting("User2Key", name, newValue)
+        Return _registerizer.Setting("AltKey", name, newValue)
     End Function
 
     ''' <summary>
@@ -150,7 +150,7 @@ Public Class Registerizer
     Public Shared Function UserData(name As String, Optional newValue As DataTable = Nothing) As DataTable
         If IsNothing(_registerizer) Then Throw New Exception("Registerizer not initialized")
 
-        Return _registerizer.Data("UserKey", name, newValue)
+        Return _registerizer.Data("SubKey", name, newValue)
     End Function
 
     ''' <summary>
@@ -163,7 +163,7 @@ Public Class Registerizer
     Public Shared Function User2Data(name As String, Optional newValue As DataTable = Nothing) As DataTable
         If IsNothing(_registerizer) Then Throw New Exception("Registerizer not initialized")
 
-        Return _registerizer.Data("User2Key", name, newValue)
+        Return _registerizer.Data("AltKey", name, newValue)
     End Function
 
 End Class

@@ -10,14 +10,12 @@ Public Class DataTableHelper
     ''' Creates a new database and adds fields to it.
     ''' </summary>
     ''' <param name="tableName">The name of the database.</param>
-    ''' <param name="columnDataArray">Stringarray with stringexpressions for the fielddata eg 'FirstName=String'.</param>
+    ''' <param name="columnNames">List of names for the fields.</param>
     ''' <returns>The database.</returns>
-    Public Shared Function Create(tableName As String, ParamArray columnDataArray As String()) As DataTable
-        Dim columnData = columnDataArray.ToIniDictionary
+    Public Shared Function Create(tableName As String, ParamArray columnNames As String()) As DataTable
         Dim output = New DataTable(tableName)
-        For Each pair In columnData
-            Dim columnType = If(pair.Value = "", GetType(String), Type.GetType(pair.Value, False))
-            output.Columns.Add(New DataColumn(pair.Key, columnType, "", MappingType.Attribute))
+        For Each name In columnNames
+            output.Columns.Add(New DataColumn(name, GetType(String), "", MappingType.Attribute))
         Next
         Return output
     End Function

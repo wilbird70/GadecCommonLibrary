@@ -14,10 +14,10 @@ Public Module DataRowExtensions
     ''' <param name="text">Text to store.</param>
     <Extension()>
     Public Sub SetString(ByRef eDataRow As DataRow, columnName As String, text As String)
-        Select Case eDataRow.Table.Columns.Contains(columnName)
-            Case True : eDataRow(columnName) = text
-            Case Else : eDataRow.Table.Columns.Add(columnName, GetType(String)) : eDataRow(columnName) = text
-        End Select
+        If eDataRow.Table.Columns.Contains(columnName) Then eDataRow(columnName) = text : Exit Sub
+
+        eDataRow.Table.Columns.Add(New DataColumn(columnName, GetType(String), "", MappingType.Attribute))
+        eDataRow(columnName) = text
     End Sub
 
     'functions

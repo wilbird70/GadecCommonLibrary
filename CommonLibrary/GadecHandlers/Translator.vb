@@ -10,36 +10,36 @@ Public Class Translator
     ''' DataTable in singleton.
     ''' </summary>
     ''' <returns>Language database.</returns>
-    Private ReadOnly Property LanguageData As DataTable = Nothing
+    Private ReadOnly Property TranslateData As DataTable = Nothing
     ''' <summary>
-    ''' The current selected language.
-    ''' </summary>
-    Private ReadOnly Property SelectedLanguage As String = ""
-    ''' <summary>
-    ''' The current selected language.
+    ''' Contains the available languages.
     ''' </summary>
     Private ReadOnly Property AvailableLanguages As String()
     ''' <summary>
+    ''' Contains the current selected language.
+    ''' </summary>
+    Private ReadOnly Property SelectedLanguage As String = ""
+    ''' <summary>
     ''' The full name of the language xml-file.
     ''' </summary>
-    Private ReadOnly _languageFileName As String
+    Private ReadOnly _translateFileName As String
 
     ''' <summary>
     ''' Private constructor for the singleton.
     ''' </summary>
     ''' <param name="languageFile">The full name of the language xml-file.</param>
     Private Sub New(languageFile As String)
-        _languageFileName = languageFile
-        LoadLanguageFileAndSetLanguage(-1)
+        _translateFileName = languageFile
+        LoadTranslateFileAndSetLanguage(-1)
     End Sub
 
     ''' <summary>
     ''' Loads the language database and sets the current language.
     ''' </summary>
     ''' <param name="index">The index number of the selected language.</param>
-    Private Sub LoadLanguageFileAndSetLanguage(index As Integer)
-        _LanguageData = DataSetHelper.LoadFromXml(_languageFileName).GetTable("Lang", "Name")
-        _AvailableLanguages = If(IsNothing(_LanguageData), {}, _LanguageData.GetTable("Available").GetStringsFromColumn("Name"))
+    Private Sub LoadTranslateFileAndSetLanguage(index As Integer)
+        _TranslateData = DataSetHelper.LoadFromXml(_translateFileName).GetTable("Lang", "Name")
+        _AvailableLanguages = If(IsNothing(_TranslateData), {}, _TranslateData.GetTable("Available").GetStringsFromColumn("Name"))
         Dim previous = Registerizer.UserSetting("Language")
 
         Select Case True
@@ -86,7 +86,7 @@ Public Class Translator
     Public Shared Sub SetLanguange(Optional index As Integer = -1)
         If IsNothing(_translator) Then MessageBoxInfo("Translator is not initialized.") : Exit Sub
 
-        _translator.LoadLanguageFileAndSetLanguage(index)
+        _translator.LoadTranslateFileAndSetLanguage(index)
         Dim eventArgs = New LanguageChangedEventArgs(_translator.SelectedLanguage, _translator.AvailableLanguages)
         RaiseEvent LanguageChangedEvent(Nothing, eventArgs)
     End Sub
@@ -95,10 +95,11 @@ Public Class Translator
     ''' Translates the controls associated with the specified parent.
     ''' </summary>
     ''' <param name="parent">The parent control.</param>
-    Public Shared Sub TranslateControles(ByVal parent As Control)
+    Public Shared Sub TranslateControls(ByVal parent As Control)
         For Each control In parent.Controls.ToArray
-            If control.Name.StartsWith("lt") Then control.Text = control.Name.Translate
-            If control.HasChildren Then TranslateControles(control)
+            Dim translation = control.Name.Translate
+            If Not translation = "..." Then control.Text = translation
+            If control.HasChildren Then TranslateControls(control)
         Next
     End Sub
 
@@ -121,13 +122,13 @@ Public Class Translator
     ''' <returns>The translated text.</returns>
     Friend Shared Function Translate(key As String) As String
         If IsNothing(_translator) Then MessageBoxInfo("Translator is not initialized.") : Return "NNN"
-        If IsNothing(_translator.LanguageData) Then Return "NNN"
+        If IsNothing(_translator.TranslateData) Then Return "NNN"
 
-        Dim languageRow = _translator.LanguageData.Rows.Find(key)
-        If IsNothing(languageRow) Then Return "XXX"
+        Dim translateInfo = _translator.TranslateData.Rows.Find(key)
+        If IsNothing(translateInfo) Then Return "..."
 
-        Dim output = languageRow.GetString(_translator.SelectedLanguage)
-        If output = "" Then output = languageRow.GetString("EN")
+        Dim output = translateInfo.GetString(_translator.SelectedLanguage)
+        If output = "" Then output = translateInfo.GetString("EN")
         If output = "" Then output = "..."
         Return output
     End Function
