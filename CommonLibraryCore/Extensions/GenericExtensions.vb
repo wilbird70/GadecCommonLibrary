@@ -1,9 +1,7 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
 Imports System.Runtime.CompilerServices
-Imports System.Runtime.Versioning
 
-<SupportedOSPlatform("windows")>
 Public Module GenericExtensions
 
     'subs

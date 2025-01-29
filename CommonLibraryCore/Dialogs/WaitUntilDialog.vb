@@ -1,10 +1,8 @@
 ﻿'Gadec Engineerings Software (c) 2022
-Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' <para><see cref="WaitUntilDialog"/> provides a dialog to wait for a criterion to occur.</para>
 ''' </summary>
-<SupportedOSPlatform("windows")>
 Public Class WaitUntilDialog
     ''' <summary>
     ''' Determines whether the criterion has become true.

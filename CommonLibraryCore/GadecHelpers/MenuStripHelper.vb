@@ -1,7 +1,6 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
 Imports System.Data
-Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' Provides methode for creating a <see cref="ContextMenuStrip"/> from the data held in a database (-collection).
@@ -20,7 +19,6 @@ Imports System.Runtime.Versioning
 ''' <para>- Data: The data which can be used when the user clicks the item;</para>
 ''' <para>- EN, NL, DE and/or FR: Description in different languages.</para>
 ''' </summary>
-<SupportedOSPlatform("windows")>
 Public Class MenuStripHelper
 
     ''' <summary>
