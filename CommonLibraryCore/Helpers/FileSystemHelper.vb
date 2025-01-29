@@ -1,11 +1,9 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
-Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' Provides methodes for the file system.
 ''' </summary>
-<SupportedOSPlatform("windows")>
 Public Class FileSystemHelper
 
     ''' <summary>

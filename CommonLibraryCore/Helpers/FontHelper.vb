@@ -1,11 +1,9 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
-Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' Provides some fonts.
 ''' </summary>
-<SupportedOSPlatform("windows")>
 Public Class FontHelper
 
     'SansSerif
