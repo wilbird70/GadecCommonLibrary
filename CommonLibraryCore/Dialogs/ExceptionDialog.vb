@@ -1,9 +1,11 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
+Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' <see cref="ExceptionDialog"/> is a detailed dialog of an exception with the option to email to the developer.
 ''' </summary>
+<SupportedOSPlatform("windows")>
 Friend Class ExceptionDialog
     ''' <summary>
     ''' Previous height of the form.

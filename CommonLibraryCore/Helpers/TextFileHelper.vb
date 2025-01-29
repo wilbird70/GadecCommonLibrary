@@ -1,9 +1,11 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
+Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' Provides methodes for reading and writing textfiles.
 ''' </summary>
+<SupportedOSPlatform("windows")>
 Public Class TextFileHelper
 
     ''' <summary>

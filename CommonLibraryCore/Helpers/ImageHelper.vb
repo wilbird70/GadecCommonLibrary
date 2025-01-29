@@ -1,9 +1,11 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
+Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' Provides methodes for images.
 ''' </summary>
+<SupportedOSPlatform("windows")>
 Public Class ImageHelper
 
     ''' <summary>

@@ -1,10 +1,12 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
 Imports System.Data
+Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' <see cref="HistoryDialog"/> is a dialog showing any available app history.
 ''' </summary>
+<SupportedOSPlatform("windows")>
 Friend Class HistoryDialog
     Private ReadOnly _versionData As DataTable
     Private ReadOnly _versionKeys As List(Of String)

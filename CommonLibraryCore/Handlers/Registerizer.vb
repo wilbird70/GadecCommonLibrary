@@ -1,10 +1,12 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
 Imports System.Data
+Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' Singleton that holds the section settings.
 ''' </summary>
+<SupportedOSPlatform("windows")>
 Public Class Registerizer
     ''' <summary>
     ''' The dictionary that holds the settings.

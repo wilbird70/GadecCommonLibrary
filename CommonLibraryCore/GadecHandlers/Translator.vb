@@ -2,10 +2,12 @@
 'Common Library
 Imports System.Data
 Imports System.Runtime.CompilerServices
+Imports System.Runtime.Versioning
 
 ''' <summary>
 ''' Singleton that holds the language database and raises the LanguageChangedEvent the first time used and when the language has changed.
 ''' </summary>
+<SupportedOSPlatform("windows")>
 Public Class Translator
     ''' <summary>
     ''' DataTable in singleton.
@@ -136,6 +138,7 @@ Public Class Translator
 
 End Class
 
+<SupportedOSPlatform("windows")>
 Public Module TranslateExtensions
 
     ''' <summary>
