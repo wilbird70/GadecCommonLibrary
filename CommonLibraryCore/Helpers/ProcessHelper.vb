@@ -1,5 +1,6 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
+Imports System.Windows.Input
 
 ''' <summary>
 ''' Provides methodes for starting other processes (outside the app).
@@ -13,12 +14,12 @@ Public Class ProcessHelper
     ''' <returns>The new <see cref="Process"/>.</returns>
     Public Shared Function StartExplorer(folderName As String) As Process
         Try
-            Windows.Input.Mouse.OverrideCursor = Windows.Input.Cursors.AppStarting
+            Mouse.OverrideCursor = Cursors.AppStarting
             Return Process.Start("explorer.exe", "{Q}{0}{Q}".Compose(folderName))
         Catch ex As Exception
             Return Nothing
         Finally
-            Windows.Input.Mouse.OverrideCursor = Nothing
+            Mouse.OverrideCursor = Nothing
         End Try
     End Function
 
@@ -29,12 +30,12 @@ Public Class ProcessHelper
     ''' <returns>The new <see cref="Process"/>.</returns>
     Public Shared Function StartExplorerAndSelectFile(fileName As String) As Process
         Try
-            Windows.Input.Mouse.OverrideCursor = Windows.Input.Cursors.AppStarting
+            Mouse.OverrideCursor = Cursors.AppStarting
             Return Process.Start("explorer.exe", "/select, {Q}{0}{Q}".Compose(fileName))
         Catch ex As Exception
             Return Nothing
         Finally
-            Windows.Input.Mouse.OverrideCursor = Nothing
+            Mouse.OverrideCursor = Nothing
         End Try
     End Function
 
@@ -59,12 +60,12 @@ Public Class ProcessHelper
     ''' <returns>The new <see cref="Process"/>.</returns>
     Public Shared Function StartProcess(processString As String) As Process
         Try
-            Windows.Input.Mouse.OverrideCursor = Windows.Input.Cursors.AppStarting
+            Mouse.OverrideCursor = Cursors.AppStarting
             Return Process.Start(processString)
         Catch ex As Exception
             Return Nothing
         Finally
-            Windows.Input.Mouse.OverrideCursor = Nothing
+            Mouse.OverrideCursor = Nothing
         End Try
     End Function
 
@@ -75,12 +76,12 @@ Public Class ProcessHelper
     ''' <returns>The new <see cref="Process"/>.</returns>
     Public Shared Function StartBrowser(url As String) As Process
         Try
-            Windows.Input.Mouse.OverrideCursor = Windows.Input.Cursors.AppStarting
+            Mouse.OverrideCursor = Cursors.AppStarting
             Return Process.Start(url)
         Catch ex As Exception
             Return Nothing
         Finally
-            Windows.Input.Mouse.OverrideCursor = Nothing
+            Mouse.OverrideCursor = Nothing
         End Try
     End Function
 
@@ -92,12 +93,12 @@ Public Class ProcessHelper
     ''' <returns>The new <see cref="Process"/>.</returns>
     Public Shared Function StartMailMessage(emailAddress As String, emailSubject As String, emailBody As String) As Process
         Try
-            Windows.Input.Mouse.OverrideCursor = Windows.Input.Cursors.AppStarting
+            Mouse.OverrideCursor = Cursors.AppStarting
             Return Process.Start("mailto:{0}?subject={1}&body={2}".Compose(emailAddress, emailSubject.Replace("&", ""), emailBody.Replace("&", "")))
         Catch ex As Exception
             Return Nothing
         Finally
-            Windows.Input.Mouse.OverrideCursor = Nothing
+            Mouse.OverrideCursor = Nothing
         End Try
     End Function
 

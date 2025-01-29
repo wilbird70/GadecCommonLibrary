@@ -1,5 +1,6 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
+Imports System.Data
 Imports System.Runtime.CompilerServices
 
 Public Module DataGridViewExtensions

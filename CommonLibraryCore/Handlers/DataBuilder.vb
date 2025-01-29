@@ -1,5 +1,6 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
+Imports System.Data
 
 ''' <summary>
 ''' <para>Databuilder can create a database on-the-fly.</para>

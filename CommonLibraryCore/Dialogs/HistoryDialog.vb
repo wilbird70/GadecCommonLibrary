@@ -1,5 +1,6 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
+Imports System.Data
 
 ''' <summary>
 ''' <see cref="HistoryDialog"/> is a dialog showing any available app history.

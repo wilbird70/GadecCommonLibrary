@@ -28,7 +28,7 @@ Public Class FileSystemHelper
         If Not title = "" Then dialog.Title = title
         Do
             Select Case True
-                Case Not dialog.ShowDialog() = Windows.Forms.DialogResult.OK : Return ""
+                Case Not dialog.ShowDialog() = DialogResult.OK : Return ""
                 Case FileNotLocked(dialog.FileName) : Return dialog.FileName
                 Case Else : MsgBox("SaveAsFileInUse".Translate, MsgBoxStyle.Exclamation)
             End Select
@@ -53,7 +53,7 @@ Public Class FileSystemHelper
         }
         If Not title = "" Then dialog.Title = title
         Do
-            Select Case dialog.ShowDialog() = Windows.Forms.DialogResult.OK
+            Select Case dialog.ShowDialog() = DialogResult.OK
                 Case True : Return dialog.FileNames
                 Case Else : Return {}
             End Select
@@ -196,7 +196,7 @@ Public Class FileSystemHelper
             .Multiselect = False,
             .FileName = "Folder Selection"
         }
-        If Not dialog.ShowDialog = Windows.Forms.DialogResult.OK Then Return ""
+        If Not dialog.ShowDialog = DialogResult.OK Then Return ""
 
         Return IO.Path.GetDirectoryName(dialog.FileName)
     End Function

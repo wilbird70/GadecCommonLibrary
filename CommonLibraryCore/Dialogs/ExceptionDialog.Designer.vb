@@ -1,6 +1,6 @@
 ﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class ExceptionDialog
-    Inherits System.Windows.Forms.Form
+    Inherits Form
 
     'Form overrides dispose to clean up the component list.
     <System.Diagnostics.DebuggerNonUserCode()>
@@ -23,12 +23,12 @@ Partial Class ExceptionDialog
     <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
         Dim resources As System.ComponentModel.ComponentResourceManager = New System.ComponentModel.ComponentResourceManager(GetType(ExceptionDialog))
-        Me.ltSend = New System.Windows.Forms.Button()
-        Me.ltClose = New System.Windows.Forms.Button()
-        Me.CaptionLabel = New System.Windows.Forms.Label()
-        Me.OutputTextBox = New System.Windows.Forms.RichTextBox()
-        Me.QuestionLabel = New System.Windows.Forms.Label()
-        Me.PictureBox1 = New System.Windows.Forms.PictureBox()
+        Me.ltSend = New Button()
+        Me.ltClose = New Button()
+        Me.CaptionLabel = New Label()
+        Me.OutputTextBox = New RichTextBox()
+        Me.QuestionLabel = New Label()
+        Me.PictureBox1 = New PictureBox()
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).BeginInit()
         Me.SuspendLayout()
         '
@@ -43,7 +43,7 @@ Partial Class ExceptionDialog
         '
         'ltClose
         '
-        Me.ltClose.DialogResult = System.Windows.Forms.DialogResult.Cancel
+        Me.ltClose.DialogResult = DialogResult.Cancel
         Me.ltClose.Location = New System.Drawing.Point(687, 259)
         Me.ltClose.Name = "ltClose"
         Me.ltClose.Size = New System.Drawing.Size(85, 23)
@@ -63,7 +63,7 @@ Partial Class ExceptionDialog
         '
         'OutputTextBox
         '
-        Me.OutputTextBox.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle
+        Me.OutputTextBox.BorderStyle = BorderStyle.FixedSingle
         Me.OutputTextBox.Font = New System.Drawing.Font("Microsoft Sans Serif", 8.25!, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, CType(0, Byte))
         Me.OutputTextBox.Location = New System.Drawing.Point(118, 12)
         Me.OutputTextBox.Name = "OutputTextBox"
@@ -89,7 +89,7 @@ Partial Class ExceptionDialog
         Me.PictureBox1.Location = New System.Drawing.Point(0, 0)
         Me.PictureBox1.Name = "PictureBox1"
         Me.PictureBox1.Size = New System.Drawing.Size(120, 120)
-        Me.PictureBox1.SizeMode = System.Windows.Forms.PictureBoxSizeMode.Zoom
+        Me.PictureBox1.SizeMode = PictureBoxSizeMode.Zoom
         Me.PictureBox1.TabIndex = 16
         Me.PictureBox1.TabStop = False
         '
@@ -97,7 +97,7 @@ Partial Class ExceptionDialog
         '
         Me.AcceptButton = Me.ltSend
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = AutoScaleMode.Font
         Me.CancelButton = Me.ltClose
         Me.ClientSize = New System.Drawing.Size(784, 294)
         Me.Controls.Add(Me.CaptionLabel)
@@ -108,17 +108,17 @@ Partial Class ExceptionDialog
         Me.Controls.Add(Me.PictureBox1)
         Me.Icon = CType(resources.GetObject("$this.Icon"), System.Drawing.Icon)
         Me.Name = "UnhandledException"
-        Me.StartPosition = System.Windows.Forms.FormStartPosition.CenterScreen
+        Me.StartPosition = FormStartPosition.CenterScreen
         Me.Text = "XXX"
         CType(Me.PictureBox1, System.ComponentModel.ISupportInitialize).EndInit()
         Me.ResumeLayout(False)
         Me.PerformLayout()
 
     End Sub
-    Friend WithEvents ltSend As System.Windows.Forms.Button
-    Friend WithEvents ltClose As System.Windows.Forms.Button
-    Friend WithEvents CaptionLabel As System.Windows.Forms.Label
-    Friend WithEvents OutputTextBox As System.Windows.Forms.RichTextBox
-    Friend WithEvents QuestionLabel As Windows.Forms.Label
-    Friend WithEvents PictureBox1 As System.Windows.Forms.PictureBox
+    Friend WithEvents ltSend As Button
+    Friend WithEvents ltClose As Button
+    Friend WithEvents CaptionLabel As Label
+    Friend WithEvents OutputTextBox As RichTextBox
+    Friend WithEvents QuestionLabel As Label
+    Friend WithEvents PictureBox1 As PictureBox
 End Class

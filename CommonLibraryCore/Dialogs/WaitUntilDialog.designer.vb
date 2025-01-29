@@ -1,9 +1,9 @@
-﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()> _
+﻿<Global.Microsoft.VisualBasic.CompilerServices.DesignerGenerated()>
 Partial Class WaitUntilDialog
-    Inherits System.Windows.Forms.Form
+    Inherits Form
 
     'Form overrides dispose to clean up the component list.
-    <System.Diagnostics.DebuggerNonUserCode()> _
+    <System.Diagnostics.DebuggerNonUserCode()>
     Protected Overrides Sub Dispose(ByVal disposing As Boolean)
         Try
             If disposing AndAlso components IsNot Nothing Then
@@ -20,10 +20,10 @@ Partial Class WaitUntilDialog
     'NOTE: The following procedure is required by the Windows Form Designer
     'It can be modified using the Windows Form Designer.  
     'Do not modify it using the code editor.
-    <System.Diagnostics.DebuggerStepThrough()> _
+    <System.Diagnostics.DebuggerStepThrough()>
     Private Sub InitializeComponent()
-        Me.ltCancel = New System.Windows.Forms.Button()
-        Me.ProgressBar = New System.Windows.Forms.ProgressBar()
+        Me.ltCancel = New Button()
+        Me.ProgressBar = New ProgressBar()
         Me.SuspendLayout()
         '
         'ltCancel
@@ -46,7 +46,7 @@ Partial Class WaitUntilDialog
         'WaitUntilDialog
         '
         Me.AutoScaleDimensions = New System.Drawing.SizeF(6.0!, 13.0!)
-        Me.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font
+        Me.AutoScaleMode = AutoScaleMode.Font
         Me.ClientSize = New System.Drawing.Size(244, 63)
         Me.Controls.Add(Me.ProgressBar)
         Me.Controls.Add(Me.ltCancel)
@@ -56,6 +56,6 @@ Partial Class WaitUntilDialog
 
     End Sub
 
-    Friend WithEvents ltCancel As Windows.Forms.Button
+    Friend WithEvents ltCancel As Button
     Friend WithEvents ProgressBar As ProgressBar
 End Class

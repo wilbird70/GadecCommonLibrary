@@ -1,5 +1,6 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
+Imports System.Data
 
 ''' <summary>
 ''' Provides methode for creating a <see cref="ContextMenuStrip"/> from the data held in a database (-collection).
