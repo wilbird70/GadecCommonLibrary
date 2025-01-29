@@ -1,11 +1,7 @@
 ﻿'Gadec Engineerings Software (c) 2022
 'Common Library
-Imports System.Runtime.Versioning
+<Assembly: Runtime.Versioning.SupportedOSPlatform("windows")>
 
-''' <summary>
-''' Provides some general methods.
-''' </summary>
-<SupportedOSPlatform("windows")>
 Public Module Functions
 
     ''' <summary>
