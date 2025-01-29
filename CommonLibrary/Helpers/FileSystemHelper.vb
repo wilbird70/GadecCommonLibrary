@@ -90,6 +90,8 @@ Public Class FileSystemHelper
     ''' </summary>
     ''' <param name="folderName">The full name of the folder.</param>
     Public Shared Sub DeleteAllFiles(folderName As String)
+        If Not IO.Directory.Exists(folderName) Then Exit Sub
+
         For Each file In IO.Directory.GetFiles(folderName)
             DeleteFile(file)
         Next
@@ -131,8 +133,8 @@ Public Class FileSystemHelper
         If Not IO.File.Exists(firstFileName) Or Not IO.File.Exists(secondFileName) Then Return False
         If firstFileName = secondFileName Then Return True
 
-        Using fileStream1 = New IO.FileStream(firstFileName, IO.FileMode.Open)
-            Using fileStream2 = New IO.FileStream(secondFileName, IO.FileMode.Open)
+        Using fileStream1 = New IO.FileStream(firstFileName, IO.FileMode.Open, IO.FileAccess.Read)
+            Using fileStream2 = New IO.FileStream(secondFileName, IO.FileMode.Open, IO.FileAccess.Read)
                 If Not fileStream1.Length = fileStream2.Length Then Return False
 
                 Do
