@@ -10,7 +10,9 @@ public static class ExceptionExtensions
     {
         var key = "1: ";
         while (eException.Data.Contains(key))
-            key = key.AutoNumber;
+        {
+            key = key.AutoNumber();
+        }
         eException.Data.Add(key, text);
     }
 }
