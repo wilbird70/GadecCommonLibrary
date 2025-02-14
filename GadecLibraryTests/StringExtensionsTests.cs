@@ -1,7 +1,7 @@
 ﻿using GadecLibrary.Extensions;
 
 namespace GadecLibraryTests;
-internal class ExceptionExtensionsTests
+internal class StringExtensionsTests
 {
     [TestCase("DezeTekstWordtNuBekeken", "Tekst", "Nu", "Error", false, "Wordt")]
     [TestCase("DezeTekstWordtNuBekeken", "Tekst", "Nu", "Error", true, "TekstWordtNu")]
