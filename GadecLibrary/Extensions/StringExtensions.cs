@@ -1,4 +1,6 @@
-﻿using System.Text.RegularExpressions;
+﻿using GadecLibrary.Constants;
+using System.Globalization;
+using System.Text.RegularExpressions;
 
 namespace GadecLibrary.Extensions;
 public static class StringExtensions
@@ -28,6 +30,45 @@ public static class StringExtensions
         return includeSearchStrings ? $"{startsAfter}{result}{endsBefore}" : result;
     }
 
+    public static string InStrRevResult(this string eString, string startsAfter, string endsBefore = "", string noResultString = "", bool includeSearchStrings = false)
+    {
+        var startsAt = eString.LastIndexOf(startsAfter);
+
+        if (startsAt == -1)
+            return noResultString;
+
+        if (startsAfter.Length == 0)
+            startsAt = 0;
+
+        startsAt += startsAfter.Length;
+
+        if (endsBefore.Length == 0)
+            return includeSearchStrings ? $"{startsAfter}{eString[startsAt..]}" : eString[startsAt..];
+
+        var endsAt = eString.IndexOf(endsBefore, startsAt);
+
+        if (endsAt == -1)
+            return noResultString;
+
+        var result = eString[startsAt..endsAt];
+
+        return includeSearchStrings ? $"{startsAfter}{result}{endsBefore}" : result;
+    }
+
+    public static string[] Cut(this string eString, string? delimiter = null) => eString.Split(delimiter ?? ";");
+
+    public static string Item(this string[] eStrings, int index) => eStrings.Length > index ? eStrings[index] : string.Empty;
+
+    public static string ReplaceMultiple(this string eString, Dictionary<string, string> searchAndReplaceValues)
+    {
+        var result = eString;
+        foreach (var searchAndReplaceValue in searchAndReplaceValues)
+        {
+            result = result.Replace(searchAndReplaceValue.Key, searchAndReplaceValue.Value);
+        }
+        return result;
+    }
+
     public static string AutoNumber(this string eString) => eString.AddNumber();
 
     public static string AddNumber(this string eString, int? add = null)
@@ -50,9 +91,84 @@ public static class StringExtensions
         return eString;
     }
 
+    public static string LastLetter(this string eString)
+    {
+        Match match = RegularExpressions.GetLastLetter.Match(eString);
+        if (!match.Success)
+            return string.Empty;
+
+        return match.Value;
+    }
+
+    public static bool HasNumber(this string eString)
+    {
+        Match match = RegularExpressions.GetNumbers.Match(eString);
+        return match.Success;
+    }
+
+    public static string EraseStart(this string eString, int length)
+    {
+        return length < eString.Length ? eString[length..] : string.Empty;
+    }
+
+    public static string EraseEnd(this string eString, int length)
+    {
+        return length < eString.Length ? eString[..^length] : string.Empty;
+    }
+
+    public static string LeftString(this string eString, int length)
+    {
+        return length < eString.Length ? eString[..length] : eString;
+    }
+
+    public static string RightString(this string eString, int length)
+    {
+        return length < eString.Length ? eString[^length..] : eString;
+    }
+
+    public static string MidString(this string eString, int start, int? length = null)
+    {
+        if (length is null || start + length > eString.Length)
+            return start < eString.Length ? eString[start..] : string.Empty;
+
+        return eString.Substring(start, length.Value);
+    }
+
+    public static double ToDouble(this string eString)
+    {
+        if (double.TryParse(eString.Replace(",", "."), CultureInfo.InvariantCulture, out var result))
+            return result;
+
+        return 0;
+    }
+
+    public static double ToInteger(this string eString)
+    {
+        if (int.TryParse(eString, out var result))
+            return result;
+
+        return 0;
+    }
+
+    public static int GetAscii(this string eString, int position)
+    {
+        var result = eString.GetChar(position);
+        return result is not null ? (int)result : 0;
+    }
+
+    public static char? GetChar(this string eString, int position)
+    {
+        if (char.TryParse(eString.MidString(position, 1), out var result))
+            return result;
+
+        return null;
+    }
+
+    // private
+
     private static (int? Number, string Before, string Match, string After) GetLastNumber(this string eString)
     {
-        MatchCollection matches = Regex.Matches(eString, @"\d+");
+        MatchCollection matches = RegularExpressions.GetNumbers.Matches(eString);
         if (matches.Count == 0)
             return (null, eString, string.Empty, string.Empty);
 
