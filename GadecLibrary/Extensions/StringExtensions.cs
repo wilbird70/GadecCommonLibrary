@@ -164,6 +164,18 @@ public static class StringExtensions
         return null;
     }
 
+    /// <summary> Obsolete extension </summary>
+    public static void FindResultAsPattern(this string eString, string pattern)
+    {
+        throw new NotImplementedException("Obsolete extension");
+    }
+
+    /// <summary> Obsolete extension </summary>
+    public static void FindResultAsPatternRev(this string eString, string pattern)
+    {
+        throw new NotImplementedException("Obsolete extension");
+    }
+
     // private
 
     private static (int? Number, string Before, string Match, string After) GetLastNumber(this string eString)
