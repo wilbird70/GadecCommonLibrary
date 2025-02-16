@@ -1,6 +1,6 @@
 ﻿using GadecLibrary.Extensions;
 
-namespace GadecLibraryTests;
+namespace GadecLibraryTests.Extensions;
 internal class StringExtensionsTests
 {
     [TestCase("GierenKunnenGoedVliegenDatIsWaarNietWaarIsDatVliegenGoedKunnenGieren", "Kunnen", "Waar", "Error", false, "GoedVliegenDatIs")]
@@ -167,12 +167,12 @@ internal class StringExtensionsTests
         Assert.That(result, Is.EqualTo(expectedResult));
     }
 
-    [TestCase("123abc!", 0)]
-    [TestCase("Hallo wereld!!", 0)]
+    [TestCase("123abc!", null)]
+    [TestCase("Hallo wereld!!", null)]
     [TestCase("1234", 1234)]
     [TestCase("45,67", 45.67)]
     [TestCase("45.67", 45.67)]
-    public void Test_ToDouble(string inputString, double expectedResult)
+    public void Test_ToDouble(string inputString, double? expectedResult)
     {
         var result = inputString.ToDouble();
 
@@ -210,5 +210,28 @@ internal class StringExtensionsTests
         var result = inputString.GetChar(position);
 
         Assert.That(result, Is.EqualTo(expectedResult));
+    }
+
+    [TestCase('G', 71)]
+    [TestCase('e', 101)]
+    [TestCase('K', 75)]
+    [TestCase(null, 0)]
+    public void Test_GetAscii(char? inputString, int expectedResult)
+    {
+        var result = inputString.GetAscii();
+
+        Assert.That(result, Is.EqualTo(expectedResult));
+    }
+
+    [Test]
+    public void Test_FindResultAsPattern_obsolete_extension_throws_exception()
+    {
+        Assert.Throws<NotImplementedException>(() => "abc".FindResultAsPattern("abc"));
+    }
+
+    [Test]
+    public void Test_FindResultAsPatternRev_obsolete_extension_throws_exception()
+    {
+        Assert.Throws<NotImplementedException>(() => "abc".FindResultAsPatternRev("abc"));
     }
 }

@@ -100,31 +100,15 @@ public static class StringExtensions
         return match.Value;
     }
 
-    public static bool HasNumber(this string eString)
-    {
-        Match match = RegularExpressions.GetNumbers.Match(eString);
-        return match.Success;
-    }
+    public static bool HasNumber(this string eString) => RegularExpressions.GetNumbers.Match(eString).Success;
 
-    public static string EraseStart(this string eString, int length)
-    {
-        return length < eString.Length ? eString[length..] : string.Empty;
-    }
+    public static string EraseStart(this string eString, int length) => length < eString.Length ? eString[length..] : string.Empty;
 
-    public static string EraseEnd(this string eString, int length)
-    {
-        return length < eString.Length ? eString[..^length] : string.Empty;
-    }
+    public static string EraseEnd(this string eString, int length) => length < eString.Length ? eString[..^length] : string.Empty;
 
-    public static string LeftString(this string eString, int length)
-    {
-        return length < eString.Length ? eString[..length] : eString;
-    }
+    public static string LeftString(this string eString, int length) => length < eString.Length ? eString[..length] : eString;
 
-    public static string RightString(this string eString, int length)
-    {
-        return length < eString.Length ? eString[^length..] : eString;
-    }
+    public static string RightString(this string eString, int length) => length < eString.Length ? eString[^length..] : eString;
 
     public static string MidString(this string eString, int start, int? length = null)
     {
@@ -134,12 +118,12 @@ public static class StringExtensions
         return eString.Substring(start, length.Value);
     }
 
-    public static double ToDouble(this string eString)
+    public static double? ToDouble(this string eString)
     {
         if (double.TryParse(eString.Replace(",", "."), CultureInfo.InvariantCulture, out var result))
             return result;
 
-        return 0;
+        return null;
     }
 
     public static double ToInteger(this string eString)
@@ -150,11 +134,9 @@ public static class StringExtensions
         return 0;
     }
 
-    public static int GetAscii(this string eString, int position)
-    {
-        var result = eString.GetChar(position);
-        return result is not null ? (int)result : 0;
-    }
+    public static int GetAscii(this string eString, int position) => eString.GetChar(position).GetAscii();
+
+    public static int GetAscii(this char? eString) => eString is null ? 0 : (int)eString;
 
     public static char? GetChar(this string eString, int position)
     {
@@ -165,18 +147,12 @@ public static class StringExtensions
     }
 
     /// <summary> Obsolete extension </summary>
-    public static void FindResultAsPattern(this string eString, string pattern)
-    {
-        throw new NotImplementedException("Obsolete extension");
-    }
+    public static (string Prefix, string Result, string Suffix) FindResultAsPattern(this string eString, string pattern)
+        => throw new NotImplementedException("Obsolete extension");
 
     /// <summary> Obsolete extension </summary>
-    public static void FindResultAsPatternRev(this string eString, string pattern)
-    {
-        throw new NotImplementedException("Obsolete extension");
-    }
-
-    // private
+    public static (string Prefix, string Result, string Suffix) FindResultAsPatternRev(this string eString, string pattern)
+        => throw new NotImplementedException("Obsolete extension");
 
     private static (int? Number, string Before, string Match, string After) GetLastNumber(this string eString)
     {
